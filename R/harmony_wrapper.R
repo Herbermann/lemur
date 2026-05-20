@@ -32,16 +32,22 @@ harmony_init <- function(embedding, design_matrix,
     stop(
       "Your 'harmony' version ", harmony_version,
       " is not supported. Please update to a supported 1.2.x release.\n",
-      "You can install archived versions from:\n",
-      "https://cran.r-project.org/src/contrib/Archive/harmony/"
+      "You can install a compatible version with:\n\n",
+      "remotes::install_version(\n",
+      '  "harmony", version = "1.2.4",\n',
+      '  repos = "https://cloud.r-project.org"\n',
+      ")"
     )
   } else if (harmony_version > "1.2.4") {
     stop(
       "Your 'harmony' version ", harmony_version,
       " is currently not supported.\n",
       "Please downgrade to a supported 1.2.x release.\n",
-      "Archived versions are available at:\n",
-      "https://cran.r-project.org/src/contrib/Archive/harmony/"
+      "You can install a compatible version with:\n\n",
+      "remotes::install_version(\n",
+      '  "harmony", version = "1.2.4",\n',
+      '  repos = "https://cloud.r-project.org"\n',
+      ")"
     )
   } else {
     alpha <- 0.2
