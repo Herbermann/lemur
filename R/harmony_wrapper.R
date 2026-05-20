@@ -26,9 +26,24 @@ harmony_init <- function(embedding, design_matrix,
 
   sigma <- rep_len(sigma, nclust)
   lambda_range = c(0.1, 10)
-  if(packageVersion("harmony") < "1.2.0"){
-    stop("Your 'harmony' version is outdated: ", packageVersion("harmony"), ". Please update to version >= 1.2.0")
-  }else{
+
+  harmony_version <- packageVersion("harmony")
+  if (harmony_version < "1.2.0") {
+    stop(
+      "Your 'harmony' version ", harmony_version,
+      " is not supported. Please update to a supported 1.2.x release.\n",
+      "You can install archived versions from:\n",
+      "https://cran.r-project.org/src/contrib/Archive/harmony/"
+    )
+  } else if (harmony_version > "1.2.4") {
+    stop(
+      "Your 'harmony' version ", harmony_version,
+      " is currently not supported.\n",
+      "Please downgrade to a supported 1.2.x release.\n",
+      "Archived versions are available at:\n",
+      "https://cran.r-project.org/src/contrib/Archive/harmony/"
+    )
+  } else {
     alpha <- 0.2
     harmonyObj <- harmony::RunHarmony(embedding, mm_groups, nclust = nclust, max.iter = 0, return_object = TRUE, verbose = FALSE)
     harmonyObj$setup(
