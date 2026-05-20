@@ -38,7 +38,7 @@ harmony_init <- function(embedding, design_matrix,
       '  repos = "https://cloud.r-project.org"\n',
       ")"
     )
-  } else if (harmony_version > "1.2.4") {
+  } else if (harmony_version >= "1.2.4") {
     stop(
       "Your 'harmony' version ", harmony_version,
       " is currently not supported.\n",
